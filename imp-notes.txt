@@ -1,2 +1,51 @@
-These are the notes that I have written. These may be empty, but having them is 
-beneficial
+###These are the notes that I have written. These may be empty, but having them
+ is beneficial###
+
+1. Flask applications are built around requests and responses. 
+Your browser send the requests, and the computer at the server side, tries to 
+fulfil the requests. 
+This is handled by the server side, using Flask app, or some other backend service. 
+That computer, on the server side, responses in answer to the user requests. 
+
+2. Classes always start with capital letters, just a note, while packages with
+lower letter. 
+
+3. Flask can display some nice things, but the purpose of REST APIs, is to 
+get data, process data, and generally, return data in form of strings. 
+
+All the other things are handled by the JavaScript. 
+
+4. HTTP Verbs:
+    a.  What is web server?
+
+        A piece of software, designed to accept incoming web requests. 
+    
+    b.  What do we send to web server?
+
+        We send a request, to load the home page of that particular website. 
+        For google, it might be
+        GET / HTTP/1.1
+        Host : www.google.com 
+
+        This is called a GET request. GET is a verb, and to some extent, tells
+        the server, what we want and how to respond. The slash represents
+        the path. Following that, is the path. 
+
+    c.  That's it. The server just sees the above request, and after that, 
+        whatever happens, if by code on the backend that tells the server, 
+        how to respond to the request.  
+
+    d.  The server may respond in wide variety of ways to get request. If path
+        doesn't exist, then it may give an error. Or if this is SMTP server, 
+        it notifies that HTTP is not supported. 
+
+    e.  Going to a page will always to a GET request. But there are many
+        more actions that are possible, such as POST, DELETE, PUT, OPTIONS etc.
+        
+    f.  Verb        Meaning                         Example
+        GET         Retrieve Something              GET /item/1
+        POST        Receive data, and use it        POST /item  
+        PUT         Make sure something is there    PUT /item
+        DELETE      Remove something                DELETE /item/1
+
+5. 
