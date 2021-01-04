@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 
 app = Flask(__name__)
 
@@ -29,10 +29,14 @@ right now we will store them as a data structure.
 
 """What we will implement in this app"""
 
+@app.route('/')
+def home():
+    return render_template('index_mine.html')
+
 
 # POST /store data: {name: }
 @app.route('/store', methods=['POST']) #By default, it is always GET
-def create_store():
+def create_store(): #TESTED
     """
     To create a new store, and to add that store to database containing 
     all the existing stores. 
@@ -60,7 +64,7 @@ test the functionality.
 @app.route('/store/<string:name>')
 #This is for type of request such as, 'http://127.0.0.1:5000/store/some_name'
 #here, the string name has to match the argument of the function
-def get_store(name):
+def get_store(name): #TESTED
     """
     Returns the store data, of a specific store given it exists in the 
     database. If not, gives an error message. 
@@ -73,7 +77,7 @@ def get_store(name):
 
 
 # GET /store
-@app.route('/store')
+@app.route('/store') #TESTED
 def get_stores():
 
     #Returns json like version of stores dictionary. Info in notes. 
@@ -89,7 +93,7 @@ def get_stores():
 
 # POST /store/<string: name>/item {name:, price: }
 @app.route('/store/<string:name>/item', methods=["POST"])
-def create_item_in_store(name):
+def create_item_in_store(name): #TESTED
     """
     Creates a new item, in an existing store
     """
@@ -109,7 +113,7 @@ def create_item_in_store(name):
 
 #GET /store/<string : name>/items
 @app.route('/store/<string:name>/items')
-def get_items_in_store(name):
+def get_items_in_store(name): #TESTED
     """
     Returns list of all the items present in the specified store. 
     """
@@ -124,7 +128,7 @@ def get_items_in_store(name):
 
 # GET /store/<string: name>/item_data : {name: }
 @app.route('/store/<string:name>/<string:item_name>')
-def get_item_in_store(name, item_name):
+def get_item_in_store(name, item_name): #TESTED
     """
     Returns a specified item, from a specified store, given both exists. 
     """
@@ -151,5 +155,11 @@ First of all, we need something to store details of our stores.
 
 #3. As we have now implemented all the endpoints, we will now use all the 
 #endpoints using JavaScript, using predefined html file from course. 
+
+#4. Using the prebuilt html file, we have already seen how API and JavaScript
+#code interacts. Now let us use a professional API tester tool, called
+#Postman, to test out API
+#This tool is used in many professional settings, and generally the best way
+#to test an API. 
 
 app.run(port = 5000)
