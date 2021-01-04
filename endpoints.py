@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify 
 
 app = Flask(__name__)
 
@@ -47,7 +47,16 @@ def get_store(name):
 # GET /store
 @app.route('/store')
 def get_stores():
-    pass
+
+    #Returns json like version of stores dictionary. Info in notes. 
+
+    """
+    One implementation note: jsonify, only takes dictionaries as input
+    but our stores is a list. Thus, we will have to pass a dictionary to 
+    jsonify. 
+    """
+
+    return jsonify({'stores' : stores})
 
 
 # POST /store/<string: name>/item {name:, price: }
@@ -62,6 +71,13 @@ def get_item_in_store(name):
     pass
 
 
-"""Thus, we have created 5 endpoints for our application. But just creating
+"""
+Thus, we have created 5 endpoints for our application. But just creating
 them isn't useful. We have to implement them. So, how do we implement them? 
 First of all, we need something to store details of our stores. 
+"""
+
+#As creating a store is difficult, we will start by retriving existing stores.
+
+
+app.run(port = 5000)

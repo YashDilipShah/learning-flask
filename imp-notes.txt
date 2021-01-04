@@ -75,4 +75,33 @@ All the other things are handled by the JavaScript.
         What this means is, to retrieve an item, you don't have to create 
         an item, rather, you can just GET a previously created item. 
 
-        
+
+6. What JSON is? 
+    JSON is basically a kind of disctionary. Something we have created in 
+    endpoints.py file, for storing the stores. 
+
+    A pair of key value pairs. And it is really helpful for sending data
+    across multiple applications. Thus, whenever our application requires
+    some data, server may send it as JSON. 
+
+    However, JSON is not a disctionary. It looks similar to dictionary, but
+    it is basically a long string. Thus, our application has to return a 
+    string, containing required data, in following format : 
+    {
+        'name' : 'My wonderful store', 
+        'items': [
+            {
+                'name' : 'My Item',
+                'price' : 15.99
+            }
+        ]
+    }
+    And then JavaScript has to read it and deal with it. It may convert it, 
+    or use it in any which way specified to extract the information. 
+
+    Thus, there has to be a conversion thing, because, we can't send 
+    Python disctionary over internet, we can only send text via a REST API. 
+    
+    Fortunately, Flask really helps us here, because it a method call JSOnify. 
+    It can convert the dictionary we just saw, into suitable format, so as to
+    send it to JavaScript. We just need to import it. 
