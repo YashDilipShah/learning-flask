@@ -145,10 +145,11 @@ them isn't useful. We have to implement them. So, how do we implement them?
 First of all, we need something to store details of our stores. 
 """
 
-#As creating a store is difficult, we will start by retriving existing stores.
+#1. As creating a store is difficult, we will start by retriving existing stores.
 
-#After implementing get stores, we will now implement the rest of the endpoints.
+#2. After implementing get stores, we will now implement the rest of the endpoints.
 
-
+#3. As we have now implemented all the endpoints, we will now use all the 
+#endpoints using JavaScript, using predefined html file from course. 
 
 app.run(port = 5000)
