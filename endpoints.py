@@ -1,4 +1,4 @@
-from flask import Flask, jsonify 
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
@@ -33,7 +33,27 @@ right now we will store them as a data structure.
 # POST /store data: {name: }
 @app.route('/store', methods=['POST']) #By default, it is always GET
 def create_store():
-    pass
+    """
+    To create a new store, and to add that store to database containing 
+    all the existing stores. 
+    """
+
+
+    request_data = request.get_json() #To get the name of new store
+    #get_json automatically converts json to dictionary
+    new_store = {
+        'name' : request_data['name'], 
+        'items' : []
+    }
+    stores.append(new_store)
+    return jsonify(new_store) #important to jsonify, else will get error.
+
+"""
+We tested the get stores method, but we can't test the create store method, 
+as it requires quite a complicated JavaScript. However, after implementing all 
+the endpoints, we will test them through a professional software, as to 
+test the functionality.  
+"""
 
 
 # GET /store/<string:name>
@@ -41,7 +61,15 @@ def create_store():
 #This is for type of request such as, 'http://127.0.0.1:5000/store/some_name'
 #here, the string name has to match the argument of the function
 def get_store(name):
-    pass
+    """
+    Returns the store data, of a specific store given it exists in the 
+    database. If not, gives an error message. 
+    """
+
+    for store in stores:
+        if store['name'] == name:
+            return jsonify(store)
+    return jsonify({'message' : 'Store doesn\'t exist'})
 
 
 # GET /store
@@ -62,22 +90,65 @@ def get_stores():
 # POST /store/<string: name>/item {name:, price: }
 @app.route('/store/<string:name>/item', methods=["POST"])
 def create_item_in_store(name):
-    pass
+    """
+    Creates a new item, in an existing store
+    """
+    
+
+    request_data = request.get_json()
+    new_item = {
+        'name' : request_data['name'], 
+        'price' : request_data['price']
+    }
+    for store in stores:
+        if store['name'] == name:
+            store['items'].append(new_item)
+            return jsonify(new_item)
+    return jsonify({'message':'Store not found.'})
 
 
-# GET /store/<string: name>/
-@app.route('/store/<string:name>')
-def get_item_in_store(name):
-    pass
+#GET /store/<string : name>/items
+@app.route('/store/<string:name>/items')
+def get_items_in_store(name):
+    """
+    Returns list of all the items present in the specified store. 
+    """
+
+
+    for store in stores:
+        if store['name'] == name:
+            return jsonify({'items' : store['items']})
+    return jsonify({'message':'Store not found. '})
+
+
+
+# GET /store/<string: name>/item_data : {name: }
+@app.route('/store/<string:name>/<string:item_name>')
+def get_item_in_store(name, item_name):
+    """
+    Returns a specified item, from a specified store, given both exists. 
+    """
+    
+
+    for store in stores:
+        if store['name'] == name:
+            for item in store['items']:
+                if item['name'] == item_name:
+                    return jsonify(item)
+            return jsonify({'message' : 'Item not found. '})
+    return jsonify({'message' : 'Store not found. '}) 
 
 
 """
-Thus, we have created 5 endpoints for our application. But just creating
+Thus, we have created 6 endpoints for our application. But just creating
 them isn't useful. We have to implement them. So, how do we implement them? 
 First of all, we need something to store details of our stores. 
 """
 
 #As creating a store is difficult, we will start by retriving existing stores.
+
+#After implementing get stores, we will now implement the rest of the endpoints.
+
 
 
 app.run(port = 5000)
