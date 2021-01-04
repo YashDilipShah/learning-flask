@@ -7,9 +7,11 @@ This will allow our app to set the path.
 Initially, the app always starts at the home page ie /
 Example : https://www.google.com/ lends to home page of google"""
 
+
+
 @app.route('/') #This is an endpoint and leads to homepage
 def homepage(): #Name doesn't matter in Flask
-    
-    return "Just for showing hardi" #Returns hello world when app is run 
+
+    return "Hello world" #Returns hello world when app is run 
 
 app.run(port = 5000) #running the app in the specific port

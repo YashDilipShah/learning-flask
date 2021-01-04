@@ -48,4 +48,31 @@ All the other things are handled by the JavaScript.
         PUT         Make sure something is there    PUT /item
         DELETE      Remove something                DELETE /item/1
 
-5. 
+5. REST principles:
+    What we know already:
+        Going to site does a GET request
+
+        This normally returns HTML
+
+        We can return other things as well, using HTML tags. 
+    
+    What is REST APIs? 
+        It uses same concepts as we have already discussed, but it is just a 
+        way of thinking about how a web server responds to your requests.
+
+        It doesn't just respond with data, but instead, it responses with
+        resources.  
+
+        It is similar to OOP. Think of server as having resources, and each
+        is able to interact with the pertinent request.  
+
+        The REST is stateless. Or atleast it is supposed to be stateless. 
+
+        This means one request cannot depend on any other request. The server
+        just knows about the current request, and not remember about the 
+        previous requests.  
+
+        What this means is, to retrieve an item, you don't have to create 
+        an item, rather, you can just GET a previously created item. 
+
+        
