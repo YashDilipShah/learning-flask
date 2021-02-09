@@ -105,3 +105,5 @@ All the other things are handled by the JavaScript.
     Fortunately, Flask really helps us here, because it a method call JSOnify. 
     It can convert the dictionary we just saw, into suitable format, so as to
     send it to JavaScript. We just need to import it. 
+
+7. Updating the GitHub. 
